@@ -15,6 +15,15 @@ return numberOne/numberTwo;
 
 }
 
+const theOperator=[add,substract,multiply,divide];
+let firstNumber;
+let secondNumber;
+
+function operate(theOperator, firstNumber,secondNumber) {
+
+
+
+}
 console.log(add(3,5));
 console.log(substract(3,10));
 console.log(multiply(3,43));

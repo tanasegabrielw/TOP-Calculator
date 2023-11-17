@@ -1,0 +1,18 @@
+.calculator{
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.key{
+
+    padding: 20px;
+    background-color: bisque;
+    border: 1px black solid;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
