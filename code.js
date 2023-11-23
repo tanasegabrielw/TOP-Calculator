@@ -2,8 +2,9 @@ let displayNumber="";
 let firstNumber=0;
 let secondNumber=0;
 let calcResult=0;
+let currentOperation="";
+const displayInput = document.querySelector(".displayInput");
 const displayResult = document.querySelector(".displayResult");
-
 // buttons selectors
 const buttonOne=document.querySelector("#one");
 const buttonTwo=document.querySelector("#two");
@@ -25,50 +26,51 @@ const buttonEquals=document.querySelector("#equals");
 // buttons for the number keys
 
 buttonOne.addEventListener("click",()=>{
-    displayResult.textContent+=1;
+    displayInput.textContent+=1;
     displayNumber +=1;
 });
 buttonTwo.addEventListener("click",()=>{
-    displayResult.textContent+=2;
+    displayInput.textContent+=2;
     displayNumber +=2;
 });
 buttonThree.addEventListener("click",()=>{
-    displayResult.textContent+=3;
+    displayInput.textContent+=3;
     displayNumber +=3;
 });
 buttonFour.addEventListener("click",()=>{
-    displayResult.textContent+=4;
+    displayInput.textContent+=4;
     displayNumber +=4;
 });
 buttonFive.addEventListener("click",()=>{
-    displayResult.textContent+=5;
+    displayInput.textContent+=5;
     displayNumber +=5;
 });
 buttonSix.addEventListener("click",()=>{
-    displayResult.textContent+=6;
+    displayInput.textContent+=6;
     displayNumber +=6;
 });
 buttonSeven.addEventListener("click",()=>{
-    displayResult.textContent+=7;
+    displayInput.textContent+=7;
     displayNumber +=7;
 });
 buttonEight.addEventListener("click",()=>{
-    displayResult.textContent+=8;
+    displayInput.textContent+=8;
     displayNumber +=8;
 });
 buttonNine.addEventListener("click",()=>{
-    displayResult.textContent+=9;
+    displayInput.textContent+=9;
     displayNumber +=9;
 });
 buttonZero.addEventListener("click",()=>{
-    displayResult.textContent+=0;
+    displayInput.textContent+=0;
     displayNumber +=0;
 });
 
 // buttons for the operation keys:
 
 buttonClear.addEventListener("click",()=>{
-    displayResult.textContent = "";
+    displayInput.textContent ="";
+    displayResult.textContent="";
     displayNumber="";
     firstNumber=0;
     secondNumber=0;
@@ -76,43 +78,86 @@ buttonClear.addEventListener("click",()=>{
 });
 
 buttonAdd.addEventListener("click",()=>{
-
+    
+    currentOperation="add";
+    displayInput.textContent="";
+    getNumber(displayNumber);
+    displayNumber="";
+    if(firstNumber!=0&&secondNumber!=0){
+        operate(add,firstNumber,secondNumber);
+        firstNumber=0;
+        secondNumber=calcResult;
+    }
 });
 
-//buttonSubtract.addEventListener("click",registerDisplayValue);
+buttonSubtract.addEventListener("click",()=>{
+    currentOperation="subtract";
+    displayInput.textContent="";
+    getNumber(displayNumber);
+    displayNumber="";
+    if(firstNumber!=0&&secondNumber!=0){
+        operate(subtract,firstNumber,secondNumber);
+        firstNumber=0;
+        secondNumber=calcResult;
+    }
+
+
+});
 //buttonMultiply.addEventListener("click",registerDisplayValue);
 //buttonDivide.addEventListener("click",registerDisplayValue);
-// buttonEquals.addEventListener("click",()=>{});
+
+buttonEquals.addEventListener("click",()=>{
+    getNumber(displayNumber);
+    displayNumber="";
+    if(firstNumber!=0&&secondNumber!=0){
+        if(currentOperation==="add"){
+            operate(add,firstNumber,secondNumber);
+            firstNumber=0;
+            secondNumber=calcResult;
+        }
+        else if(currentOperation==="subtract"){
+            operate(subtract,firstNumber,secondNumber);
+            firstNumber=0;
+            secondNumber=calcResult;
+        }
+    }
+});
 
 // operations
 
 const add=function(numberOne,numberTwo){
-    return numberOne+numberTwo;
+    return calcResult=numberOne+numberTwo;
 };
 
-const substract=function(numberOne,numberTwo){
-    return numberOne-numberTwo;
+const subtract=function(numberOne,numberTwo){
+    return calcResult=numberTwo-numberOne;
 };
 
 const multiply=function(numberOne,numberTwo){
-    return numberOne*numberTwo;
+    return calcResult=numberOne*numberTwo;
 };
 const divide=function(numberOne,numberTwo){
-    return numberOne/numberTwo;
+    return calcResult=numberOne/numberTwo;
 };
 
 //
 
 function operate(operator, firstNumber,secondNumber) {
 
-    return operator(firstNumber,secondNumber)
-    
+    operator(firstNumber,secondNumber);
+    displayResult.textContent=calcResult;
+    displayInput.textContent="";
  }
 
-function getNumber(){
+function getNumber(displayNumber){
 
-
+if(displayNumber){
+    if(secondNumber==0){
+        return secondNumber=parseFloat(displayNumber);
+    } else if(firstNumber==0){
+        return firstNumber=parseFloat(displayNumber);
+    }
+}
 }
 
-console.log(operate(divide,3,4))
 
