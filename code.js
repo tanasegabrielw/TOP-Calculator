@@ -5,6 +5,8 @@ let calcResult=0;
 let currentOperation="";
 const displayInput = document.querySelector(".displayInput");
 const displayResult = document.querySelector(".displayResult");
+displayInput.textContent=" ";
+displayResult.textContent=" ";
 // buttons selectors
 const buttonOne=document.querySelector("#one");
 const buttonTwo=document.querySelector("#two");
@@ -101,10 +103,19 @@ buttonSubtract.addEventListener("click",()=>{
         secondNumber=calcResult;
     }
 
+});
+buttonMultiply.addEventListener("click",()=>{
+    currentOperation="multiply";
+    displayInput.textContent="";
+    getNumber(displayNumber);
+    displayNumber="";
+    if(firstNumber!=0&&secondNumber!=0){
+        operate(multiply,firstNumber,secondNumber);
+        firstNumber=0;
+        secondNumber=calcResult;
+    }
 
 });
-//buttonMultiply.addEventListener("click",registerDisplayValue);
-//buttonDivide.addEventListener("click",registerDisplayValue);
 
 buttonEquals.addEventListener("click",()=>{
     getNumber(displayNumber);
@@ -114,13 +125,34 @@ buttonEquals.addEventListener("click",()=>{
             operate(add,firstNumber,secondNumber);
             firstNumber=0;
             secondNumber=calcResult;
-        }
-        else if(currentOperation==="subtract"){
+        } else if(currentOperation==="subtract"){
             operate(subtract,firstNumber,secondNumber);
+            firstNumber=0;
+            secondNumber=calcResult;
+        } else if(currentOperation==="multiply"){
+            operate(multiply,firstNumber,secondNumber);
+            firstNumber=0;
+            secondNumber=calcResult;
+        } else if(currentOperation==="divide"){
+            operate(divide,firstNumber,secondNumber);
             firstNumber=0;
             secondNumber=calcResult;
         }
     }
+});
+
+buttonDivide.addEventListener("click",() =>{
+    currentOperation="divide";
+    displayInput.textContent="";
+    getNumber(displayNumber);
+    displayNumber="";
+    if(firstNumber!=0&&secondNumber!=0){
+        operate(divide,firstNumber,secondNumber);
+        firstNumber=0;
+        secondNumber=calcResult;
+    }
+
+
 });
 
 // operations
